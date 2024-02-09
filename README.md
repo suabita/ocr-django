@@ -15,7 +15,7 @@ relevante sobre su composición.
   ```bash
     git clone https://github.com/suabita/ocr-django.git
     ```
-* Asegúrese de tener un ambiente virtual de python con los paquetes definidos en el `requiremenst.txt` instalados.
-* Active el modo de desarrollo poniendo en `True` la variable `DEBUG` del archivo settings.
-* En la carpeta raíz del proyecto ejecute el comando `python manage.py runserver 127.0.0.1:8000`.
+* Asegúrate de tener un ambiente virtual de python con los paquetes definidos en el `requiremenst.txt` instalados.
+* Activa el modo de desarrollo poniendo en `True` la variable `DEBUG` del archivo settings.
+* En la carpeta raíz del proyecto ejecuta el comando `python manage.py runserver 127.0.0.1:8000`.
 * El servidor se ejecutará en [localhost:8000](http://127.0.0.1:8000).
