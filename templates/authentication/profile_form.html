@@ -1,0 +1,18 @@
+
+{% extends 'index.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<h2>Perfil</h2>
+{% if user.is_authenticated %}
+  <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-danger">Cancelar</button>
+  </form>
+{% else %}
+    <p>Inicia sesión para acceder a todas las características</p>
+{% endif %}
+{% endblock %}

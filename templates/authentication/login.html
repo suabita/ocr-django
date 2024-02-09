@@ -1,0 +1,33 @@
+
+{% extends 'index.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="card w-50">
+    <div class="card-header">
+        <h2 class="text-center mb-4">Iniciar sesión</h2>
+    </div>
+    <div class="card-body">
+        
+        {% if error_message %}
+        <div class="alert alert-danger">{{ error_message }}</div>
+        {% endif %}
+        <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-label-group text-justify">
+        {{ form.username }}
+        <label for="{{ form.username.auto_id }}">{{ form.username.label }}</label>
+        </div>
+        <div class="form-label-group text-justify">
+        {{ form.password }}
+        <label for="{{ form.password.auto_id }}">{{ form.password.label }}</label>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="button" class="btn btn-danger">Cancelar</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}Nutriente{% endblock %}
+
+{% block content %}
+<h2>{{ action }} Nutriente</h2>
+{% if user.is_authenticated %}
+        <ul>
+            {% for objet in object_list %}
+                <li>{{ objet }}</li>
+                <a href="{% url 'nutrient:update' objet.slug %}">Editar</a>
+            {% endfor %}
+        </ul>
+{% else %}
+    <p>Inicia sesión para acceder a todas las características</p>
+{% endif %}
+{% endblock %}

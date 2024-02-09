@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block title %}Bienvenido a nuestra página de inicio{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+        <p>Bienvenido, {{ user.username }}</p>
+{% else %}
+        <p>Inicia sesión para acceder a todas las características</p>
+{% endif %}
+{% endblock %}
