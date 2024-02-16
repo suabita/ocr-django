@@ -28,9 +28,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +44,7 @@ INSTALLED_APPS = [
     'information.apps.InformationConfig',
     'unit.apps.UnitConfig',
     'daily_quantity.apps.DailyQuantityConfig',
-    'nutritional_table.apps.NutritionalTableConfig'
+    'nutritional_table.apps.NutritionalTableConfig',
 
 ]
 
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'ocrdjproject.urls'
@@ -137,5 +140,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = reverse_lazy('authentication:login')
-LOGIN_REDIRECT_URL = reverse_lazy('authentication:home')
+LOGIN_REDIRECT_URL = reverse_lazy('nutritional_table:list') 
 LOGOUT_REDIRECT_URL = reverse_lazy('authentication:login')

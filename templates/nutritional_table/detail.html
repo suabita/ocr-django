@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+
+{% block title %}Tabla Nutricional{% endblock %}
+
+{% block content %}
+<h2>{{ action }} Tabla Nutricional</h2>
+{% if user.is_authenticated %}
+{{object.name}}
+
+
+<div class="container">
+    <h1>Lista Desplegable con Cards</h1>
+    <!-- Lista desplegable -->
+    <select class="form-control" id="dropdownMenu">
+        
+        <option value="prueba" data-description="eggfesd">pruebaaaa</option>
+        <option value="prueba2" data-description="lkjhgfhj">pruebaaaa2</option>
+        
+    </select>
+
+
+    <div class="card mt-3" id="cardInfo">
+        <div class="card-body">
+            <h5 class="card-title">Título del Card</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Subtítulo</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna ullamcorper, eleifend elit vitae, hendrerit quam. Vestibulum sit amet tellus vitae lorem vestibulum aliquet non ut arcu. Nulla facilisi. Proin laoreet, urna vel malesuada mattis, nisi sapien consectetur eros, et varius velit velit non lacus.</p>
+            
+            <h6 class="card-subtitle mt-3 mb-2 text-muted">Subtítulo 2</h6>
+            <p class="card-text">Integer vitae consequat purus. Duis id est at libero congue volutpat. Cras sit amet dolor luctus, vestibulum lectus nec, venenatis felis. Integer lacinia luctus justo. Duis quis aliquet lorem.</p>
+            
+            <h6 class="card-subtitle mt-3 mb-2 text-muted">Lista de Elementos</h6>
+            <ul>
+                <li>Elemento 1</li>
+                <li>Elemento 2</li>
+                <li>Elemento 3</li>
+            </ul>
+            
+            <h6 class="card-subtitle mt-3 mb-2 text-muted">Otro Subtítulo</h6>
+            <p class="card-text">Suspendisse ut nisl ac turpis laoreet fringilla. Morbi efficitur, dolor in convallis fringilla, neque eros ultrices turpis, in tincidunt nulla sem nec felis. Donec ut congue orci, ac aliquam eros.</p>
+        </div>
+    </div>
+    
+    
+    
+    <!-- Card donde se mostrará la información -->
+    <div class="card mt-3" id="cardInfo2">
+        <div class="card-body">
+            <h5 class="card-title" id="cardTitle"></h5>
+            <p class="card-text" id="cardDescription"></p>
+        </div>
+    </div>
+</div>
+
+
+{% else %}
+        <p>Inicia sesión para acceder a todas las características</p>
+{% endif %}
+
+{% endblock %}
+
+
+
+<script>
+    document.getElementById('dropdownMenu').addEventListener('change', function() {
+        var selectedId = this.value;
+        var selectedOption = this.options[this.selectedIndex];
+        var title = selectedOption.innerText;
+        var description = selectedOption.getAttribute('data-description');
+        document.getElementById('cardTitle').innerText = title;
+        document.getElementById('cardDescription').innerText = description;
+    });
+</script>
+  
+

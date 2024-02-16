@@ -11,7 +11,7 @@ class NutrientCreateView(LoginRequiredMixin, CreateView):
     model = Nutrient
     template_name = 'nutrient/form.html'
     form_class = NutrientForm
-    success_url = reverse_lazy('authentication:home') 
+    success_url = reverse_lazy('nutritional_table:list') 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,7 +24,7 @@ class NutrientUpdateView(LoginRequiredMixin, UpdateView):
     model = Nutrient
     template_name = 'nutrient/form.html'
     form_class = NutrientForm
-    success_url = reverse_lazy('authentication:home') 
+    success_url = reverse_lazy('nutritional_table:list') 
     
 
     def get_context_data(self, **kwargs):

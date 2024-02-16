@@ -1,5 +1,5 @@
 from django.urls import path
-from authentication.views import SignUpView, ProfileView, HomeView
+from authentication.views import SignUpView, ProfileView, HomeView, CustomLogoutView, CustomLoginView
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 
@@ -14,5 +14,7 @@ urlpatterns = [
     path('profile-update/<int:pk>/', ProfileView.as_view(), name='update'),
     path('home/', HomeView.as_view(),
              name='home'),
-    path('login/', LoginView.as_view(template_name='authentication/login.html'), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    #path('login/', LoginView.as_view(template_name='authentication/login.html'), name='login'),
 ]

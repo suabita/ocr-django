@@ -11,7 +11,8 @@
 <div id="main_container" class="gx-container">
     {% if request.user.is_authenticated %}
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-body">
+            
             <a class="navbar-brand" href="#">Mi Sitio</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,16 +20,23 @@
         
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                
                 <li class="nav-item">
-                <a class="nav-link" href="#">Inicio</a>
+                    <a href="{% url 'nutritional_table:create' %}" class="nav-link">
+                        <button class="btn btn-sm btn-outline-secondary">Agregar nueva tabla nutricional</button>
+                    </a>
                 </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Acerca de</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
-                </li>
+                
             </ul>
+            
+            <ul class="navbar-nav ml-auto"> <!-- Esta es la parte añadida -->
+                <li class="nav-item">
+                    <form action="{% url 'authentication:logout' %}" method="post" class="nav-link">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Cerrar sesión</button>
+                    </form>
+                 </li>
+              </ul>
             </div>
         </nav>
         
@@ -40,7 +48,16 @@
     </div>
 </div>
 
-
+<script>
+    document.getElementById('dropdownMenu').addEventListener('change', function() {
+        var selectedId = this.value;
+        var selectedOption = this.options[this.selectedIndex];
+        var title = selectedOption.innerText;
+        var description = selectedOption.getAttribute('data-description');
+        document.getElementById('cardTitle').innerText = title;
+        document.getElementById('cardDescription').innerText = description;
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

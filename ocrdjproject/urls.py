@@ -25,6 +25,6 @@ urlpatterns = [
     path('authentication/', include('authentication.urls')),
     path('nutrient/', include('nutrient.urls')),
     path('nutritional_table/', include('nutritional_table.urls')),
-    path('', RedirectView.as_view(url=reverse_lazy('authentication:home'), permanent=False))
+    path('', RedirectView.as_view(url=reverse_lazy('nutritional_table:list'), permanent=False))
 
 ]

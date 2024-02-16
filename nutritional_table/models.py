@@ -13,6 +13,8 @@ class NutritionalTable(models.Model):
                                             null=True,
                                             blank=True,
                                             validators=[utils.validate_file])
+    name = models.CharField(_('nutrient name'), max_length=100, unique=True)
+
 
 
     class Meta:

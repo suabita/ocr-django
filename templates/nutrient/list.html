@@ -1,13 +1,13 @@
 {% extends 'index.html' %}
 
-{% block title %}Nutriente{% endblock %}
+
 
 {% block content %}
-<h2>{{ action }} Nutriente</h2>
+
 {% if user.is_authenticated %}
         <ul>
-            {% for objet in object_list %}
-                <li>{{ objet }}</li>
+            {% for object in object_list %}
+                <li>{{ object }}</li>
                 <a href="{% url 'nutrient:update' objet.slug %}">Editar</a>
             {% endfor %}
         </ul>

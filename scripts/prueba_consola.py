@@ -14,5 +14,5 @@ from nutritional_table.models import NutritionalTable
 u = User.objects.last()
 print("user created",u.__dict__)
 
-n = NutritionalTable.objects.last()
-print("nutritional table", n.__dict__)
+n = NutritionalTable.objects.count()
+print("nutritional table", n)
