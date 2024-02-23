@@ -15,7 +15,6 @@ class Information(models.Model):
                                 related_name='nutrient_information_set')
     information = models.TextField(_('information'), null=True, blank=True)
     type_information = models.PositiveSmallIntegerField(_('type information'), choices=TypeChoices.choices, null=True, blank=True, default=TypeChoices.DEFINITION)
-    cause_illness = models.PositiveSmallIntegerField(_('cause illness'), choices=CauseIllnessChoices.choices, null=True, blank=True, default=CauseIllnessChoices.EXCESS)
     bibliography = models.TextField(_('bibliography'), null=True, blank=True)
 
 

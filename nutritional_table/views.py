@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView, UpdateView, ListView
+from django.views.generic import CreateView, UpdateView, ListView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from nutritional_table.models import NutritionalTable
 from nutritional_table.forms import NutritionalTableForm
@@ -85,3 +85,9 @@ class NutritionalDetailView(DetailView):
 
         print("user_context home", self.request.user)
         return context
+    
+
+class NutritionalTableDeleteView(DeleteView):
+    model = NutritionalTable
+    success_url = reverse_lazy('nutritional_table:list')
+    template_name = 'nutritional_table/delete_confirmation.html'

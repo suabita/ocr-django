@@ -17,7 +17,6 @@ class LifeStageChoices(models.IntegerChoices):
 class DailyQuantity(models.Model):
     nutrient = models.ForeignKey('nutrient.Nutrient', verbose_name=_('nutrient'), on_delete=models.CASCADE,
                                 related_name='nutrient_dailyquantity_set')
-    information = models.TextField(_('information'), null=True, blank=True)
     life_stage = models.PositiveSmallIntegerField(_('life stage'), choices=LifeStageChoices.choices, null=True, blank=True, default=LifeStageChoices.INFANT)
     max_age_range = models.DecimalField(_('maximum age range'), null=True, blank=True, max_digits=14, decimal_places=2, validators=[MinValueValidator(0)],
                                     default=Decimal('0.0'))

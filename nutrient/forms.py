@@ -5,4 +5,4 @@ from nutrient.models import Nutrient
 class NutrientForm(ModelForm):
     class Meta:
         model = Nutrient
-        fields = ('name',)
+        fields = ['name','slug']

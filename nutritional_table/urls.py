@@ -1,5 +1,6 @@
 from django.urls import path
-from nutritional_table.views import NutritionalTableCreateView, NutritionalTableListView, NutritionalTableUpdateView, NutritionalDetailView
+from nutritional_table.views import NutritionalTableCreateView, NutritionalTableListView,\
+NutritionalTableUpdateView, NutritionalDetailView, NutritionalTableDeleteView
 from django.views.generic import TemplateView
 
 
@@ -12,4 +13,5 @@ urlpatterns = [
     path('', NutritionalTableListView.as_view(),
              name='list'),
     path('detail/<int:pk>/', NutritionalDetailView.as_view(), name='detail'),
+        path('delete/<int:pk>/', NutritionalTableDeleteView.as_view(), name='delete'),
 ]

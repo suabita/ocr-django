@@ -1,0 +1,24 @@
+
+{% extends 'index.html' %}
+
+{% block title %}Tabla Nutricional{% endblock %}
+
+{% block content %}
+<h2>{{ action }} Tabla Nutricional</h2>
+{% if user.is_authenticated %}
+
+    <h1>Confirmar Eliminación</h1>
+    <p>¿Estás seguro de que deseas eliminar este objeto?</p>
+    <p>{{ object.name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-outline-success">Eliminar</button>
+        <a href="{% url 'nutritional_table:list' %}" class="btn btn-sm btn-outline-danger">Cancelar</a>
+    </form>
+
+{% else %}
+    <p>Inicia sesión para acceder a todas las características</p>
+{% endif %}
+
+{% endblock %}
+

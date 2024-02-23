@@ -26,6 +26,8 @@
                 <span>{{ object.name }}</span>
                 <a href="{% url 'nutritional_table:update' object.id %}" class="btn btn-sm btn-outline-primary">Editar</a>
                 <a href="{% url 'nutritional_table:detail' object.id %}" class="btn btn-sm btn-outline-primary">Detalle</a>
+                <a href="{% url 'nutritional_table:delete' object.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+
             </li>
         {% endfor %}
     </ul>
