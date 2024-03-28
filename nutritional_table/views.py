@@ -6,6 +6,7 @@ from nutritional_table.forms import NutritionalTableForm
 from django.urls import reverse_lazy
 from authentication.models import User
 from django.views.generic import DetailView
+from django.urls import reverse
 
 # Create your views here.
 
@@ -18,7 +19,12 @@ class NutritionalTableCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         # Antes de guardar el formulario, establecemos el valor del campo campo_a_setear
         form.instance.user = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        #llamaria clase de procesamiento a traves de una funcion asincrona de zappa (decorador task)como en el receptor
+        return response
+
+    def get_success_url(self):
+        return reverse('nutritional_table:detail', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

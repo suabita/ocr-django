@@ -12,8 +12,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+DEBUG = (os.getenv('DEBUG', 'False') == 'True')
+
+if DEBUG:
+    dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+    load_dotenv(dotenv_path)
+    print(dotenv_path)
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q*!^(4s9stdl4v*kny%a8^3tk061k$*5&@oq!z0^cren^cez7i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '9es91b62x4.execute-api.us-east-2.amazonaws.com']
 
 
 
@@ -33,6 +41,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crispy_forms',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +64,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
 ]
 
 ROOT_URLCONF = 'ocrdjproject.urls'
@@ -72,6 +80,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -84,15 +93,16 @@ WSGI_APPLICATION = 'ocrdjproject.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'nutritional_dev',
-        'HOST': 'localhost',
-        'USER': 'nutritionalocr',
-        'PASSWORD': 'nutritionalocr2801',
-        'PORT': '5432'
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", "patientrack"),
+        "USER": os.getenv("DB_USERNAME", "postgres"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT", 5432)
     }
 }
+
 
 
 # Password validation
@@ -113,6 +123,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AWS_ACCESS_KEY_ID = os.getenv("AWS_OCR_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_OCR_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "foodlensocr")
+AWS_REGION_NAME = 'us-east-1'
+
+DEFAULT_FILE_STORAGE = 'main.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'main.s3boto3.S3Boto3StoragePublic'
+
 AUTH_USER_MODEL = 'authentication.User'
 
 # Internationalization
@@ -130,9 +148,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = "static/"
+#TATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# Añade esta configuración si aún no está
+# Ruta de directorio para archivos estáticos
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, "ocrdjproject","static")
+]
 
+print(STATICFILES_DIRS)
+print(BASE_DIR)
+print(DEBUG)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -142,3 +168,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = reverse_lazy('authentication:login')
 LOGIN_REDIRECT_URL = reverse_lazy('nutritional_table:list') 
 LOGOUT_REDIRECT_URL = reverse_lazy('authentication:login')
+
+

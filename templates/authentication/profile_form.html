@@ -4,14 +4,14 @@
 {% block title %}Editar Perfil{% endblock %}
 
 {% block content %}
-<h2>Perfil</h2>
+<h2 class="medium-color">Perfil</h2>
 {% if user.is_authenticated %}
   <form method="post" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="submit" class="btn custom-rounded custom-btn">Guardar</button>
     <a href="{% url 'nutritional_table:list' %}">
-      <button type="button" class="btn btn-danger">Cancelar</button>
+      <button type="button" class="btn custom-rounded custom-pink-btn">Cancelar</button>
     </a>
   </form>
 {% else %}

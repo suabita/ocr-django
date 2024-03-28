@@ -4,16 +4,20 @@
 {% block title %}Tabla Nutricional{% endblock %}
 
 {% block content %}
-<h2>{{ action }} Tabla Nutricional</h2>
+<h2 class="medium-color">{{ action }} Tabla Nutricional</h2>
 {% if user.is_authenticated %}
 
-    <h1>Confirmar Eliminación</h1>
+    <h4 class="medium-color-2 bold-text mb-3">Confirmar Eliminación</h4>
     <p>¿Estás seguro de que deseas eliminar este objeto?</p>
     <p>{{ object.name }}</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-sm btn-outline-success">Eliminar</button>
-        <a href="{% url 'nutritional_table:list' %}" class="btn btn-sm btn-outline-danger">Cancelar</a>
+        <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn custom-rounded custom-btn">Eliminar</button>
+            <a href="{% url 'nutritional_table:list' %}">
+                <button type="button" class="btn custom-rounded custom-pink-btn">Cancelar</button>
+            </a>
+        </div>
     </form>
 
 {% else %}

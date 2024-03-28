@@ -34,7 +34,7 @@ class CustomLogoutView(LogoutView):
 
 
 class CustomLoginView(LoginView):
-    template_name='authentication/login.html'
+    template_name='authentication/login-v2.html'
 
     def form_invalid(self, form):
         # Agregar un mensaje de error

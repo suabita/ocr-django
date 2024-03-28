@@ -1,0 +1,320 @@
+.nav-color {
+    background-color: #3D4154;
+}
+
+.dark-bg-color {
+    background-color: #3D4154;
+}
+
+.medium-bg-color {
+    background-color: #7E7B8F;
+}
+
+.title-color {
+    color: #313359;
+}
+
+.light-color {
+    color: #EBE3FF;
+}
+
+.navbar-toggler-icon {
+    color:  #4F5873 !important;
+}
+
+.navbar-toggler{
+    border-color: #3D4154;
+}
+
+.dark-color {
+    color: #3D4154;
+}
+
+.medium-color {
+    color: #7E7B8F;
+}
+
+.orange-color {
+    color: #FF7F70;
+}
+
+
+a:hover {
+    color: #4F5873;
+}
+
+
+.custom-btn {
+    background-color: #FFCE73;
+    border-color: #FFCE73;
+    color: #7E7B8F;
+    font-weight: bold;
+}
+
+
+.custom-btn:hover {
+    background-color: #EBBD6A;
+    border-color: #EBBD6A;
+    color: #7E7B8F;
+    font-weight: bold;
+}
+
+.custom-btn:active,
+.custom-btn:focus {
+    background-color: #FFCE73;
+    border-color: #FFCE73;
+    font-weight: bold;
+    color: #7E7B8F;
+}
+
+/* Cambios en el botón cuando se enfoca */
+.custom-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(226, 182, 102, 0.2); /* Sombra al enfocar */
+    outline: none; /* Quita el contorno al enfocar */
+}
+
+.custom-pink-btn {
+    background-color: #FF9C94;
+    border-color: #FF9C94;
+    color: #7E7B8F;
+    font-weight: bold;
+}
+
+
+.custom-pink-btn:hover {
+    background-color: #DF8882;
+    border-color: #DF8882;
+    color: #7E7B8F;
+    font-weight: bold;
+}
+
+.custom-pink-btn:active,
+.custom-pink-btn:focus {
+    background-color: #FF9C94;
+    border-color: #FF9C94;
+    color: #7E7B8F;
+    font-weight: bold;
+}
+
+/* Cambios en el botón cuando se enfoca */
+.custom-pink-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(214, 137, 122, 0.3)    ; /* Sombra al enfocar */
+    outline: none; /* Quita el contorno al enfocar */
+}
+
+
+
+.custom-blue-btn {
+    background-color: #7E7B8F;
+    border-color: #7E7B8F;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+
+.custom-blue-btn:hover {
+    background-color: #646272;
+    border-color: #646272;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+.custom-blue-btn:active,
+.custom-blue-btn:focus {
+    background-color: #7E7B8F;
+    border-color: #7E7B8F;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+/* Cambios en el botón cuando se enfoca */
+.custom-blue-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(100, 98, 114, 0.3); /* Sombra al enfocar */
+    outline: none; /* Quita el contorno al enfocar */
+}
+
+
+
+.custom-deep-blue-btn {
+    background-color: #3D4154;
+    border-color: #3D4154;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+
+.custom-deep-blue-btn:hover {
+    background-color: #646272;
+    border-color: #646272;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+.custom-blue-btn:active,
+.custom-deep-blue-btn:focus {
+    background-color: #3D4154;
+    border-color: #3D4154;
+    color: #E2DAF5;
+    font-weight: bold;
+}
+
+/* Cambios en el botón cuando se enfoca */
+.custom-deep-blue-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(100, 98, 114, 0.3); /* Sombra al enfocar */
+    outline: none; /* Quita el contorno al enfocar */
+}
+
+/* .btn:hover {
+    background-color: #3D4154;  
+    border-color: #3D4154;
+} */
+
+.logo-img {
+    max-width: 150px;  /* Establece un ancho máximo para la imagen */
+        width: auto;       /* Mantiene la proporción de la imagen */
+        height: auto;  
+}
+
+.medium-color-2 {
+    color:#FF9C94;
+}
+
+
+/* Personalización de colores para el dropdown */
+.dropdown-menu {
+    background-color: #3D4154; /* Fondo del dropdown */
+    border: 1px solid #3D4154; /* Borde del dropdown */
+}
+
+.dropdown-item {
+    color: #D9D5D2; /* Color del texto del dropdown */
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: #4F5873; /* Color de fondo al pasar el mouse */
+}
+
+.big-title {
+    font-family: 'Tahoma', sans-serif;
+    font-size: 1.7em; 
+    /* color: #313359; */
+    margin-bottom: 20px; 
+}
+
+
+.big-subtitle {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em; /* Tamaño del subtítulo */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+
+.custom-text-container {
+    max-height: 80%;
+    max-width: 90%; /* Puedes ajustar el porcentaje según tus necesidades */
+    margin: 0 auto; /* Centrar el contenedor del texto horizontalmente */
+    padding-top: 3rem;
+}
+
+.light-bg-color {
+    background-color: #F7F2F0;
+    /* background-color: #FEF3E3; */
+}
+
+.icon-pink {
+    color: #FF9C94;
+}
+
+.icon-blue {
+    color: #646272;
+}
+
+.icon-yellow {
+    color: #FFCE73;
+}
+
+
+.bold-text {
+    font-weight: bold;
+}
+
+.custom-rounded {
+    border-radius: 15px !important; /* Ajusta el valor de border-radius según lo necesites */
+}
+
+.main-theme-bg-color {
+    background-color: #EBE3FF;
+}
+
+
+.card {
+    border-radius: 15px; /* Redondea las esquinas de la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra a la tarjeta */
+}
+
+
+footer {
+    background-color: #EBE3FF; /* Color de fondo */
+    color: #7E7B8F; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+    padding: 20px 0; /* Espaciado interno */
+    position: relative; /* Posición relativa */
+    bottom: 0; /* Ubicación en la parte inferior */
+    width: 100%; /* Ancho completo */
+    margin-top: -20px; /* Eliminar espacio superior */
+}
+
+#main-container {
+    min-height: 100vh; /* Altura mínima del 100% de la ventana de visualización */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+}
+
+main {
+    flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+     /* Aumentar el espacio inferior */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+
+input.custom-input:focus {
+    border-color: #7E7B8F; /* Color cuando está seleccionado */
+}
+
+
+.card-login {
+    width: 90%; /* Ancho del card */
+    max-width: 600px; /* Ancho máximo del card */
+    margin: 0 auto; /* Centrar el card */
+}
+
+.login-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.login-container {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-l {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

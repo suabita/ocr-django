@@ -20,11 +20,18 @@ from django.urls import path
 from django.urls import path, include, reverse_lazy
 from django.views.generic import RedirectView
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.urls import re_path
+from django.views.static import serve
+    
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('authentication/', include('authentication.urls')),
     path('nutrient/', include('nutrient.urls')),
     path('nutritional_table/', include('nutritional_table.urls')),
-    path('', RedirectView.as_view(url=reverse_lazy('nutritional_table:list'), permanent=False))
+    path('', RedirectView.as_view(url=reverse_lazy('nutritional_table:list'), permanent=False)),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

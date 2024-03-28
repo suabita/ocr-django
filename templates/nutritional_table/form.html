@@ -3,17 +3,21 @@
 {% block title %}Tabla Nutricional{% endblock %}
 
 {% block content %}
-<h2>{{ action }} Tabla Nutricional</h2>
+<h2 class="medium-color">{{ action }} Tabla Nutricional</h2>
 {% if user.is_authenticated %}
+<div class="">
     <form method="post" action="" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Guardar</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn custom-rounded custom-btn">Guardar</button>
+            <a href="{% url 'nutritional_table:list' %}">
+                <button type="button" class="btn custom-rounded custom-pink-btn">Cancelar</button>
+            </a>
+        </div>
+        </form>
+</div>
     
-    <a href="{% url 'nutritional_table:list' %}">
-        <button type="button" class="btn btn-danger">Cancelar</button>
-    </a>
-    </form>
 {% else %}
         <p>Inicia sesión para acceder a todas las características</p>
 {% endif %}

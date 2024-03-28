@@ -11,7 +11,7 @@ urlpatterns = [
     path('signup/done/', TemplateView.as_view(
             template_name='authentication/signup_done.html'),
              name='signup_done'),
-    path('profile-update/<int:pk>/', ProfileView.as_view(), name='update'),
+    path('profile-update/<int:pk>/', ProfileView.as_view(), name='profile-update'),
     path('home/', HomeView.as_view(),
              name='home'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),

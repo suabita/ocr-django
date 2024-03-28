@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "aws_region": "us-east-2",
+        "django_settings": "ocrdjproject.settings",
+        "profile_name": "foodlens",
+        "project_name": "ocr-django",
+        "runtime": "python3.8",
+        "s3_bucket": "foodlens-zappa"
+    }
+}
