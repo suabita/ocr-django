@@ -6,6 +6,7 @@ from authentication.forms import SignUpForm, ProfileForm
 from django.urls import reverse_lazy
 from authentication.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 
 class SignUpView(CreateView):
     template_name = 'authentication/signup.html'

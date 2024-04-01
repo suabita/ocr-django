@@ -6,6 +6,7 @@ from customized.mixin import SlugModelMixin
 class Nutrient(SlugModelMixin, models.Model):
     slug = models.SlugField(unique=True, max_length=100)
     name = models.CharField(_('nutrient name'), max_length=100, db_index=True, unique=True)
+    cached_recommendations = models.JSONField(_('recommendations'), null=True, blank=True, default=dict)
 
     def get_slug(self):
         return self.name

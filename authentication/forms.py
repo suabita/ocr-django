@@ -64,7 +64,8 @@ class SignUpForm(ModelForm):
     
     class Meta:
         model = User
-        fields = ("email", "first_name", "last_name")
+        fields = ("email", "first_name", "last_name", "weight", 
+                  "height", "sex", "age", "physiological_state", "physical_activity")
         widgets = {
             'email': forms.EmailInput(attrs={
                 'autofocus': True,
@@ -81,7 +82,31 @@ class SignUpForm(ModelForm):
                 'required': True,
                 'placeholder': _('last name'),
                 'class': 'form-control'
-            })
+            }),
+            'weight': forms.TextInput(attrs={
+                'required': True,
+                'placeholder': _('weight'),
+                'class': 'form-control'
+            }),
+            'height': forms.TextInput(attrs={
+                'required': True,
+                'placeholder': _('height'),
+                'class': 'form-control'
+            }),
+            'age': forms.TextInput(attrs={
+                'required': True,
+                'placeholder': _('age'),
+                'class': 'form-control'
+            }),
+            'physiological_state': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            'sex': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            
         }
 
 class ProfileForm(ModelForm):
@@ -91,7 +116,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model = User
         fields = ("username", "first_name", "last_name", "weight", 
-                  "height", "sex", "age", "physiological_state")
+                  "height", "sex", "age", "physiological_state", "physical_activity")
         widgets = {
             'username': forms.TextInput(attrs={
                 'readonly': 'readonly',
@@ -123,6 +148,10 @@ class ProfileForm(ModelForm):
                 'class': 'form-control'
             }),
             'physiological_state': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            'physcal_activity': forms.Select(attrs={
                 'readonly': 'readonly',
                 'class': 'form-control'
             }),

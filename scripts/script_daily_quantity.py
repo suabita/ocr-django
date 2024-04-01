@@ -17,7 +17,7 @@ from unit.models import Unit
 
 # Leer el archivo Excel y convertirlo en un DataFrame
 try:
-    df = pd.read_excel("/home/karen/Downloads/base_datos_cantidades_script.xlsx")
+    df = pd.read_excel("/home/karen/Downloads/base_datos_cantidades_script(2).xlsx")
     print("try")
 except Exception as e:
     print("Error al leer el archivo Excel:", e)
@@ -42,6 +42,8 @@ for index, row in df.iterrows():
     cantidad = row['cantidad']
     unidad = Unit.objects.filter(name=row['unidad']).last()
     documentacion = row['documentacion']
+    print("edad_minima", edad_minima)
+    print("edad_maxima", edad_maxima)
     print("documentacion", documentacion)
     if nutriente:
         objeto_nuevo = DailyQuantity(

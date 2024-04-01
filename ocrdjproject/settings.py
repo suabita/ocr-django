@@ -17,7 +17,9 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 DEBUG = (os.getenv('DEBUG', 'False') == 'True')
+print("DEBUG",DEBUG)
 
+DEBUG=True
 if DEBUG:
     dotenv_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
     load_dotenv(dotenv_path)
@@ -41,13 +43,13 @@ ALLOWED_HOSTS = ['localhost', '9es91b62x4.execute-api.us-east-2.amazonaws.com']
 
 INSTALLED_APPS = [
     'crispy_forms',
-    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     'storages',
     'authentication.apps.AuthenticationConfig',
     'nutrient.apps.NutrientConfig',
     'information.apps.InformationConfig',
@@ -126,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AWS_ACCESS_KEY_ID = os.getenv("AWS_OCR_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_OCR_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME", "foodlensocr")
-AWS_REGION_NAME = 'us-east-1'
+AWS_REGION_NAME = 'us-east-2'
 
 DEFAULT_FILE_STORAGE = 'main.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'main.s3boto3.S3Boto3StoragePublic'
@@ -148,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 #TATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # Añade esta configuración si aún no está
 # Ruta de directorio para archivos estáticos
@@ -170,3 +172,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('nutritional_table:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('authentication:login')
 
 
+OPENAI_KEY = os.getenv('OPENAI_KEY', '')
+
+ID_SUGAR = os.getenv('ID_SUGAR', '')
+ID_FAT = os.getenv('ID_FAT', '')

@@ -21,11 +21,15 @@
                     <h2 class="card-title big-title medium-color bold-text mb-4">¿ Con qué frecuencia consumes este alimento ?</h2>
                     <h5 class="card-title mb-5 big-subtitle">La etiqueta de información nutricional te permite optar por alimentos de manera informada.</h5>
                     <div class="card-text mb-3"><b class="dark-color">Alimento ingresado:</b> {{ object.name }}</div>
-                    <div class="card-text mb-3"><b class="dark-color">Estado de la consulta:</b> <i class="fa-regular fa-circle-check orange-color"></i> Actualizado</div>
+                    <div class="card-text mb-3"><b class="dark-color">Estado de la consulta:</b> {% if object.status == 1 %}<i class="fa-regular fa-circle-check orange-color"></i>{% else %}<i class="fa-regular fa-clock orange-color"></i>{% endif %} {{ object.get_status_display }}</div>
                     <div class="row">
                         
                         <div class="col-md-12 col-lg-6 text-left d-flex align-items-center">
-                            <p class="card-text text-left"><small class="text-body-secondary"><a class="medium-color" href="">¿ Deseas generar una nueva respuesta?</a></small></p>
+                            <p class="card-text text-left">
+                                <small class="text-body-secondary">
+                                    <a class="medium-color" href="{{ custom_function_url }}">¿ Deseas generar una nueva respuesta?</a>
+                                </small>
+                            </p>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex justify-content-end align-items-center">
                             <a href="{% url 'nutritional_table:detail' object.id %}" class="btn custom-deep-blue-btn mb-3 align-self-center custom-rounded">Actualizar</a>
@@ -46,75 +50,47 @@
         </div>
     </div>
     
+    {% for nutrient, info in object.recommendations.items %}
     
     <div class="card mt-3 mb-3" id="cardInfo">
         <div class="card-body mb-3 p-4">
-        
-            <h4 class="card-title medium-color-2 mb-4 bold-text"><i class="fas fa-apple-alt"></i> Sodio</h4>
+            <h4 class="card-title medium-color-2 mb-4 bold-text"><i class="fas fa-apple-alt"></i> {{nutrient}} </h4>
            
             <div class="row mb-4">
                 <div class="col-md-4 col-lg-4"></div>
                 <div class="col-md-4 col-lg-4 mb-3">
                     <i class="fas fa-chart-pie icon-blue"></i>
-                    <span class="bold-text">Cantidad recomendada por día:</span> 
-                    <span>5mg</span>
+                    <span class="bold-text">Cantidad recomendada:</span> 
+                    <span>{% if info.recommended_quantity %}{{info.recommended_quantity}}{% else %}0 g{% endif %}</span>
                 </div>
                 <div class="col-md-4 col-lg-4 mb-3">
                     <i class="fas fa-magnifying-glass icon-pink"></i>
                     <span class="bold-text">Cantidad leída por porción:</span> 
-                    <span>114mg</span>
+                    <span>{% if info.ocr_quantity %}{{info.ocr_quantity}}{% else %}0 g{% endif %}</span>
                 </div>
             </div>
     
-            <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna ullamcorper, eleifend elit vitae, hendrerit quam. Vestibulum sit amet tellus vitae lorem vestibulum aliquet non ut arcu. Nulla facilisi. Proin laoreet, urna vel malesuada mattis, nisi sapien consectetur eros, et varius velit velit non lacus.</p>
+            <p class="card-text mb-4">{{info.concept}}</p>
     
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="collapse multi-collapse" id="multiCollapse{{ nutrient | slugify }}">
                 <h6 class="card-subtitle mb-3 bold-text medium-color-2 ">Implicaciones para la salud asociadas al exceso y la deficiencia</h6>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna ullamcorper, eleifend elit vitae, hendrerit quam. Vestibulum sit amet tellus vitae lorem vestibulum aliquet non ut arcu. Nulla facilisi. Proin laoreet, urna vel malesuada mattis, nisi sapien consectetur eros, et varius velit velit non lacus.</p>
+                <p class="card-text">{{info.implications}}</p>
             </div>
     
-            <a class="medium-color" data-bs-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Leer más... <i class="fas fa-chevron-down"></i></a>
+            <a class="medium-color" data-bs-toggle="collapse" href="#multiCollapse{{ nutrient | slugify}}" aria-expanded="false" aria-controls="multiCollapse{{ nutrient | slugify }}">Leer más... <i class="fas fa-chevron-down"></i></a>
     
         </div>
     </div>
 
-    <div class="card mt-3 mb-3" id="cardInfo">
-        <div class="card-body mb-3 p-4">
-        
-            <h4 class="card-title medium-color-2 mb-4 bold-text"><i class="fas fa-apple-alt"></i> Calcio</h4>
-           
-            <div class="row mb-4">
-                <div class="col-md-4 col-lg-4"></div>
-                <div class="col-md-4 col-lg-4 mb-3">
-                    <i class="fas fa-chart-pie icon-blue"></i>
-                    <span class="bold-text">Cantidad recomendada por día:</span> 
-                    <span>5mg</span>
-                </div>
-                <div class="col-md-4 col-lg-4 mb-3">
-                    <i class="fas fa-magnifying-glass icon-pink"></i>
-                    <span class="bold-text">Cantidad leída por porción:</span> 
-                    <span>114mg</span>
-                </div>
-            </div>
-    
-            <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna ullamcorper, eleifend elit vitae, hendrerit quam. Vestibulum sit amet tellus vitae lorem vestibulum aliquet non ut arcu. Nulla facilisi. Proin laoreet, urna vel malesuada mattis, nisi sapien consectetur eros, et varius velit velit non lacus.</p>
-    
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <h6 class="card-subtitle mb-3 bold-text medium-color-2 ">Implicaciones para la salud asociadas al exceso y la deficiencia</h6>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna ullamcorper, eleifend elit vitae, hendrerit quam. Vestibulum sit amet tellus vitae lorem vestibulum aliquet non ut arcu. Nulla facilisi. Proin laoreet, urna vel malesuada mattis, nisi sapien consectetur eros, et varius velit velit non lacus.</p>
-            </div>
-    
-            <a class="medium-color" data-bs-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1">Leer más... <i class="fas fa-chevron-down"></i></a>
-    
-        </div>
-    </div>
+    {% endfor %}
+
 </div>
-<!-- <div class="d-flex justify-content-center mb-3">
+<div class="d-flex justify-content-center mb-3">
     <a href="{% url 'nutritional_table:list' %}">
         <button type="button" class="btn custom-btn custom-rounded">Regresar</button>
     </a>
 
-</div> -->
+</div>
 
 
 

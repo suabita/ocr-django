@@ -6,3 +6,6 @@ pillow==10.1.0
 django-storages==1.14.2
 boto3==1.33.11
 django-crispy-forms
+opencv-python-headless==4.9.0.80
+openai==1.14.3
+numpy==1.24.4

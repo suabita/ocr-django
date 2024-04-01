@@ -7,10 +7,10 @@ from django.utils.translation import gettext_lazy as _
 class DailyQuantityAdmin(admin.ModelAdmin):
     list_display = ('nutrient', 'life_stage', 'min_age_range', 'max_age_range', 'recommendable_quantity', 'unit')
     list_filter = ('life_stage',)
-    search_fields = ('nutrient__name', 'information', 'bibliography')
+    search_fields = ('nutrient__name', 'bibliography')
     fieldsets = (
         (None, {
-            'fields': ('nutrient', 'information')
+            'fields': ('nutrient',)
         }),
         (_('Age Range'), {
             'fields': ('min_age_range', 'max_age_range')

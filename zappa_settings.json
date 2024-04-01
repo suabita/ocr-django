@@ -5,6 +5,7 @@
         "profile_name": "foodlens",
         "project_name": "ocr-django",
         "runtime": "python3.8",
-        "s3_bucket": "foodlens-zappa"
+        "s3_bucket": "foodlens-zappa",
+        "slim_handler": true
     }
 }
