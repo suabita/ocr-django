@@ -44,7 +44,8 @@ class AIRecommendations:
         prompt = f"""
         Eres una API que da al usuario información nutricional útil sobre el nutriente {self.nutrient.name}, solo obtienes esa información del contexto almacenado en la base de datos, 
         así que por ningún motivo te salgas de ese contexto que te voy a dar. La respuesta que vas a entregar será un objeto json con dos llaves, la primera será "concepto" y como valor un resumen del concepto del nutriente
-        y la segunda llave será "implicaciones" y como valor será un resumen de las implicaciones para la salud asociadas al exceso o a la deficiencia de ese nutriente, entonces entrega así: 
+        y la segunda llave será "implicaciones" y como valor será un resumen de únicamente las implicaciones para la salud asociadas al exceso o a la deficiencia de ese nutriente, no incluyas datos de concepto, ni beneficios, 
+        limitate a las implicaciones asociadas al exceso o a la deficiencia, entonces entrega así: 
 
         {{"concepto":"resumen del concepto basado totalmente en el contexto que te daré, si no te doy contexto deja un string vacío",
         "implicaciones":"Un resumen de las implicaciones para la salud asociadas al exceso o a la deficiencia de ese nutriente, pero teniendo en cuenta únicamente el contexto que te daré, si no te doy contexto deja un string vacío"}}

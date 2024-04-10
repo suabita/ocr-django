@@ -11,19 +11,19 @@ class StatusChoices(models.IntegerChoices):
 
 
 class NutritionalTable(models.Model):
-    user = models.ForeignKey('authentication.User', verbose_name=_('user'), on_delete=models.CASCADE,
+    user = models.ForeignKey('authentication.User', verbose_name=_('usuario'), on_delete=models.CASCADE,
                                 related_name='user_nutritionaltable_set')
-    recommendations = models.JSONField(_('user response'), null=True, blank=True, default=dict)
-    ocr_data = models.JSONField(_('ocr data'), null=True, blank=True, default=dict)    
-    file_table = models.FileField(_('file table'), upload_to=utils.upload_user_file,
+    recommendations = models.JSONField(_('respuesta usuario'), null=True, blank=True, default=dict)
+    ocr_data = models.JSONField(_('datos ocr'), null=True, blank=True, default=dict)    
+    file_table = models.FileField(_('archivo de tabla original'), upload_to=utils.upload_user_file,
                                             null=True,
                                             blank=True,
                                             validators=[utils.validate_file])
-    file_table_processed = models.FileField(_('file table processed'), upload_to=utils.upload_user_file_processed,
+    file_table_processed = models.FileField(_('archivo de tabla procesada'), upload_to=utils.upload_user_file_processed,
                                             null=True,
                                             blank=True,
                                             validators=[utils.validate_file])
-    name = models.CharField(_('nutrient name'), max_length=100, unique=True)
+    name = models.CharField(_('nombre'), max_length=100, unique=True)
     status = models.PositiveSmallIntegerField(_('estado'), choices=StatusChoices.choices, null=True, blank=True, default=StatusChoices.PENDING)
 
 

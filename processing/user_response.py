@@ -1,8 +1,8 @@
 from nutrient.models import Nutrient
 from processing.ai_recommendations import AIRecommendations
 from daily_quantity.models import DailyQuantity, LifeStageChoices
-from authentication.user.models import PhysiologicalChoices, GenderChoices, PhysicalActivityChoices
-from ocrdjproject.settings import ID_FAT, ID_SUGAR
+from authentication.user.models import PhysiologicalChoices, GenderChoices, PhysicalActivityChoices, ObjectiveChoices
+from ocrdjproject.settings import ID_FAT, ID_SUGAR, ID_CALORIES
 
 
 class UserResponse:
@@ -85,22 +85,34 @@ class UserResponse:
             if quantity:
                 return "{} {}".format(quantity.recommendable_quantity,quantity.unit)
             else:
-                return ""
+                print("nutriente id", nutrient_qs.id)
+                print("settings calorias id", ID_CALORIES)
+                if nutrient_qs.id == ID_CALORIES:
+                    if self.user.objective == ObjectiveChoices.KEEP:
+                        return str(self.get_calories()) + " Kcal"
+                    elif self.user.objective == ObjectiveChoices.LOSE:
+                        return str(self.get_calories() - 500) + " Kcal"
+                    elif self.user.objective == ObjectiveChoices.GAIN:
+                        return str(self.get_calories() + 250) + " Kcal"
+                else:
+                    return ""
                     
         else:
             print("no hay usuario")
             return
 
     def get_tmb(self):
-        if self.user.sex == GenderChoices.FEMALE:
-            tmb = (10*self.user.weight)+(6.25*self.user.height)-(5*self.user.age)-161
-        if self.user.sex == GenderChoices.MALE:    
-            tmb = (10*self.user.weight)+(6.25*self.user.height)-(5*self.user.age)+5
-
+        if self.user.sex == GenderChoices.MALE:
+            tmb = 88.362 + (13.397 * float(self.user.weight)) + (4.799 * float(self.user.height)) - (5.677 * float(self.user.age))
+        
+        if self.user.sex == GenderChoices.FEMALE:   
+            tmb = 447.593 + (9.247 * float(self.user.weight)) + (3.098 * float(self.user.height)) - (4.330 * float(self.user.age))
+        
         return tmb
     
     def get_calories(self):
         tmb = self.get_tmb()
+
         if self.user.physical_activity == PhysicalActivityChoices.SEDENTARY:
             return tmb*1.2
         if self.user.physical_activity == PhysicalActivityChoices.LIGHTLY_ACTIVE:

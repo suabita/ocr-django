@@ -23,12 +23,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-2">
+                <li class="nav-item mr-2  mb-2 mb-md-0">
                     <a href="{% url 'nutritional_table:create' %}" role="button" class="nav-link btn btn-sm custom-rounded custom-blue-btn">
                         Agregar nueva tabla nutricional
                     </a>
                 </li>
-                <li class="nav-item dropdown"> <!-- Posicionar a la derecha y agregar margen -->
+                <li class="nav-item dropdown mr-2 mb-2 mb-md-0"> <!-- Posicionar a la derecha y agregar margen -->
                     <div class="dropdown">
                         <a href="#" class="nav-link btn btn-sm custom-btn custom-rounded dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if request.user.username %}

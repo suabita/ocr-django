@@ -134,15 +134,15 @@ nutrient_qs = Nutrient.objects.filter(name="Calorías").last()
 # daily.save()
 
 
-nutrient= Nutrient.objects.filter(name="Biotina").last()
-daily = DailyQuantity.objects.filter(nutrient=nutrient)
-info = Information.objects.filter(nutrient=nutrient)
-references = []
-for d in daily:
-    references.append(d.bibliography)
-for i in info:
-    references.append(i.bibliography)
-print(nutrient.name, set(references))
+# nutrient= Nutrient.objects.filter(name="Biotina").last()
+# daily = DailyQuantity.objects.filter(nutrient=nutrient)
+# info = Information.objects.filter(nutrient=nutrient)
+# references = []
+# for d in daily:
+#     references.append(d.bibliography)
+# for i in info:
+#     references.append(i.bibliography)
+# print(nutrient.name, set(references))
 
 """ 
 daily = DailyQuantity.objects.all()
@@ -163,4 +163,8 @@ for n in ["Ácido pantoténico"]:
 # print(quantity.__dict__)
 
 
-
+n = Nutrient.objects.filter(name="Grasa total").last()
+# n.name = "Carbohidratos totales"
+# n.save()
+print(n.name,n.id)
+# # n.delete()

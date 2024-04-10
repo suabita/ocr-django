@@ -65,12 +65,12 @@ class SignUpForm(ModelForm):
     class Meta:
         model = User
         fields = ("email", "first_name", "last_name", "weight", 
-                  "height", "sex", "age", "physiological_state", "physical_activity")
+                  "height", "sex", "age", "physiological_state", "objective", "physical_activity")
         widgets = {
             'email': forms.EmailInput(attrs={
                 'autofocus': True,
                 'required': True,
-                'placeholder': _('email'),
+                'placeholder': _('correo'),
                 'class': 'form-control'
             }),
             'first_name': forms.TextInput(attrs={
@@ -85,17 +85,17 @@ class SignUpForm(ModelForm):
             }),
             'weight': forms.TextInput(attrs={
                 'required': True,
-                'placeholder': _('weight'),
+                'placeholder': _('peso'),
                 'class': 'form-control'
             }),
             'height': forms.TextInput(attrs={
                 'required': True,
-                'placeholder': _('height'),
+                'placeholder': _('altura'),
                 'class': 'form-control'
             }),
             'age': forms.TextInput(attrs={
                 'required': True,
-                'placeholder': _('age'),
+                'placeholder': _('edad'),
                 'class': 'form-control'
             }),
             'physiological_state': forms.Select(attrs={
@@ -103,6 +103,14 @@ class SignUpForm(ModelForm):
                 'class': 'form-control'
             }),
             'sex': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            'physical_activity': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            'objective': forms.Select(attrs={
                 'readonly': 'readonly',
                 'class': 'form-control'
             }),
@@ -116,7 +124,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model = User
         fields = ("username", "first_name", "last_name", "weight", 
-                  "height", "sex", "age", "physiological_state", "physical_activity")
+                  "height", "sex", "age", "physiological_state", "objective", "physical_activity")
         widgets = {
             'username': forms.TextInput(attrs={
                 'readonly': 'readonly',
@@ -151,11 +159,15 @@ class ProfileForm(ModelForm):
                 'readonly': 'readonly',
                 'class': 'form-control'
             }),
-            'physcal_activity': forms.Select(attrs={
+            'sex': forms.Select(attrs={
                 'readonly': 'readonly',
                 'class': 'form-control'
             }),
-            'sex': forms.Select(attrs={
+            'physical_activity': forms.Select(attrs={
+                'readonly': 'readonly',
+                'class': 'form-control'
+            }),
+            'objective': forms.Select(attrs={
                 'readonly': 'readonly',
                 'class': 'form-control'
             }),

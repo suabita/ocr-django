@@ -6,6 +6,7 @@
         "project_name": "ocr-django",
         "runtime": "python3.8",
         "s3_bucket": "foodlens-zappa",
-        "slim_handler": true
+        "slim_handler": true,
+        "timeout_seconds": 900
     }
 }

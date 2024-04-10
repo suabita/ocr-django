@@ -174,5 +174,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('authentication:login')
 
 OPENAI_KEY = os.getenv('OPENAI_KEY', '')
 
-ID_SUGAR = os.getenv('ID_SUGAR', '')
-ID_FAT = os.getenv('ID_FAT', '')
+ID_SUGAR = int(os.getenv('ID_SUGAR'))
+ID_FAT = int(os.getenv('ID_FAT'))
+ID_CALORIES = int(os.getenv('ID_CALORIES'))
