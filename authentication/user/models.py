@@ -19,9 +19,10 @@ class PhysiologicalChoices(models.IntegerChoices):
 class PhysicalActivityChoices(models.IntegerChoices):
     SEDENTARY = 0, _("Sedentario (poco o nada de ejercicio + trabajo de escritorio)")
     LIGHTLY_ACTIVE = 1, _("Ligeramente activo (ejercicio ligero 1-3 días / semana)")
-    MODERATELY_ACTIVE = 2, _("Moderadamente activo (ejercicio moderado 3-5 días / semana)")
-    VERY_ACTIVE = 3, _("Muy activo (ejercicio pesado 6-7 días / semana)")
-    EXTREMELY_ACTIVE = 4, _("Extremadamente activo (entrenamiento extenuante 2x / día)")
+    MODERATELY_ACTIVE = 2, _("Moderadamente activo (ejercicio ligero 3-5 días / semana)")
+    ACTIVE = 3, _("Activo (ejercicio moderado 3-5 días / semana)")
+    VERY_ACTIVE = 4, _("Muy activo (ejercicio pesado 6-7 días / semana)")
+    EXTREMELY_ACTIVE = 5, _("Extremadamente activo (entrenamiento extenuante 2x / día)")
 
 class ObjectiveChoices(models.IntegerChoices):
     KEEP = 0, _("Mantener el peso")

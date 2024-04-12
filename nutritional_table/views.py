@@ -22,9 +22,7 @@ class NutritionalTableCreateView(LoginRequiredMixin, CreateView):
         # Antes de guardar el formulario, establecemos el valor del campo campo_a_setear
         form.instance.user = self.request.user
         response = super().form_valid(form)
-        #llamaria clase de procesamiento a traves de una funcion asincrona de zappa (decorador task)como en el receptor
-        
-        # ProcessingMain(self.request.user, self.object).run()
+        #llamar clase de procesamiento a traves de una funcion asincrona de zappa (decorador task)
         async_process_data(self.request.user.id, self.object.pk, False)
         return response
 

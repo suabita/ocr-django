@@ -94,6 +94,10 @@ class UserResponse:
                         return str(self.get_calories() - 500) + " Kcal"
                     elif self.user.objective == ObjectiveChoices.GAIN:
                         return str(self.get_calories() + 250) + " Kcal"
+                    elif self.user.physiological_state == PhysiologicalChoices.PREGNANCY:
+                        return "primer trimestre: {} Kcal, segundo trimestre: {} Kcal, tercer trimestre: {} Kcal".format(str(self.get_calories() + 85),str(self.get_calories() + 285),str(self.get_calories() + 475))
+                    elif self.user.physiological_state == PhysiologicalChoices.BREASTFEEDING:
+                        return "primer semestre: {} Kcal, segundo semestre: {} Kcal".format(str(self.get_calories() + 505),str(self.get_calories() + 460))
                 else:
                     return ""
                     
@@ -102,11 +106,40 @@ class UserResponse:
             return
 
     def get_tmb(self):
+        """Se obtienen el dato de tasa metabolica basal para el usuario segun las formulas de la FAO"""
         if self.user.sex == GenderChoices.MALE:
-            tmb = 88.362 + (13.397 * float(self.user.weight)) + (4.799 * float(self.user.height)) - (5.677 * float(self.user.age))
+
+            if self.user.age < 3:
+                tmb = 59.512 * float(self.user.weight) - 30.4
+            elif self.user.age > 3 and self.user.age < 10:
+                tmb = 22.706 * float(self.user.weight) + 504.3
+            elif self.user.age > 10 and self.user.age < 18:
+                tmb = 17.686 * float(self.user.weight) + 658.2 
+            elif self.user.age > 18 and self.user.age < 30:     
+                tmb = 15.057 * float(self.user.weight) + 692.2
+            elif self.user.age > 30 and self.user.age < 60:
+                tmb = 11.472 * float(self.user.weight) + 873.1
+            else:
+                tmb = 11.711 * float(self.user.weight) + 587.7
+          
+
+            # tmb_h_b = 88.362 + (13.397 * float(self.user.weight)) + (4.799 * float(self.user.height)) - (5.677 * float(self.user.age))
         
-        if self.user.sex == GenderChoices.FEMALE:   
-            tmb = 447.593 + (9.247 * float(self.user.weight)) + (3.098 * float(self.user.height)) - (4.330 * float(self.user.age))
+        if self.user.sex == GenderChoices.FEMALE: 
+            if self.user.age < 3:
+                tmb = 58.317 * float(self.user.weight) - 31.1
+            elif self.user.age > 3 and self.user.age < 10:
+                tmb = 20.315 * float(self.user.weight) + 485.9
+            elif self.user.age > 10 and self.user.age < 18:
+                tmb = 13.384 * float(self.user.weight) + 692.6 
+            elif self.user.age > 18 and self.user.age < 30:     
+                tmb = 14.818 * float(self.user.weight) + 486.6
+            elif self.user.age > 30 and self.user.age < 60:
+                tmb = 8.126 * float(self.user.weight) + 845.6
+            else:
+                tmb = 9.082 * float(self.user.weight) + 658.5
+
+            # tmb_h_b = 447.593 + (9.247 * float(self.user.weight)) + (3.098 * float(self.user.height)) - (4.330 * float(self.user.age))
         
         return tmb
     
@@ -114,13 +147,15 @@ class UserResponse:
         tmb = self.get_tmb()
 
         if self.user.physical_activity == PhysicalActivityChoices.SEDENTARY:
-            return tmb*1.2
+            return tmb*1.45
         if self.user.physical_activity == PhysicalActivityChoices.LIGHTLY_ACTIVE:
-            return tmb*1.375
+            return tmb*1.60
         if self.user.physical_activity == PhysicalActivityChoices.MODERATELY_ACTIVE:
-            return tmb*1.55
+            return tmb*1.75
+        if self.user.physical_activity == PhysicalActivityChoices.ACTIVE:
+            return tmb*1.90
         if self.user.physical_activity == PhysicalActivityChoices.VERY_ACTIVE:
-            return tmb*1.725
+            return tmb*2.05
         if self.user.physical_activity == PhysicalActivityChoices.EXTREMELY_ACTIVE:
-            return tmb*1.9
+            return tmb*2.20
         
