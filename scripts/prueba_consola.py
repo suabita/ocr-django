@@ -168,3 +168,12 @@ n = Nutrient.objects.filter(name="Grasa total").last()
 # n.save()
 print(n.name,n.id)
 # # n.delete()
+
+table = NutritionalTable.objects.filter(id=120).last()
+# table.recommendations["Calorías"]["recommended_quantity"] = "1567.1626 Kcal"
+# table.save()
+print(ascii(table.file_table_processed))
+
+nutrient = Nutrient.objects.filter(name__icontains="Proteína").last()
+print(nutrient.name, nutrient.cached_recommendations)
+

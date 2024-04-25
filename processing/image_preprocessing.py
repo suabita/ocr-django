@@ -31,7 +31,7 @@ class ImagePreprocessing:
                                 "media/{}".format(self.nutritional_table.file_table.name),
                                 "./temp_files_ocr/original_image.{}".format(file_extension))
         self.original_image = cv2.imread(file_path)
-        self.original_image = cv2.resize(self.original_image, (1280, 720))
+        self.original_image = cv2.resize(self.original_image, (1980, 1080))
 
 
     def run(self):
@@ -46,7 +46,7 @@ class ImagePreprocessing:
         
         gray = cv2.cvtColor(self.original_image, cv2.COLOR_BGR2GRAY)
         # Binarizacion (blanco y negro)
-        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 3, 2)
+        thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 25, 30)
         # Buscar contornos rectangulares para aislar la tabla
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         # Encontrar el contorno más grande, que debería ser la tabla
@@ -144,14 +144,14 @@ class ImagePreprocessing:
         gris = cv2.cvtColor(tabla, cv2.COLOR_BGR2GRAY)
 
         # Binarizar la imagen usando umbral adaptativo
-        binarizado = cv2.adaptiveThreshold(gris, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 13, 11)
+        binarizado = cv2.adaptiveThreshold(gris, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 11, 8)
 
         # Detección y eliminación de líneas verticales
-        kernel_verticales = np.ones((1, 60), np.uint8)
+        kernel_verticales = np.ones((1, 100), np.uint8)
         lineas_verticales = cv2.morphologyEx(binarizado, cv2.MORPH_OPEN, kernel_verticales)
 
         # Detección y eliminación de líneas horizontales
-        kernel_horizontales = np.ones((60, 1), np.uint8)
+        kernel_horizontales = np.ones((100, 1), np.uint8)
         lineas_horizontales = cv2.morphologyEx(binarizado, cv2.MORPH_OPEN, kernel_horizontales)
 
         # Combinar resultados para eliminar líneas
@@ -191,6 +191,16 @@ class ImagePreprocessing:
 
         s3_client = boto3.client('s3')
         s3_client.upload_file(local_file_path, AWS_STORAGE_BUCKET_NAME, object_name)
+
+        url = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{object_name}"
+
+        self.nutritional_table.file_table_processed.save(
+        os.path.basename(url),
+        File(open(local_file_path, 'rb'))
+        )
+        print("self.nutritional_table.file_table_processed",ascii(self.nutritional_table.file_table_processed))
+    
+        self.nutritional_table.save()
 
         return object_name
         # with open(local_file_path, 'rb') as f:

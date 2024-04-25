@@ -79,11 +79,14 @@ class OcrProcessing:
         4. Si lees algo como Carbohidratos Totales o Carb. Total. o Carbohidrato total cambialo por Carbohidratos totales.\n
         5. Si lees algo como Grasa sat. o Grasa Saturada cambialo por Grasa saturada. \n
         6. Si lees algo como Grasa Trans o Trans o Grasas Trans o Grasas trans cambialo por Grasa trans.\n
-        7. Si lees algo como Az. añadidos o Azúcares Anadidos cambialo por Azúcares añadidos.\n
+        7. Si lees algo como Az. añadidos o Azúcares Anadidos o Az. Añadidos cambialo por Azúcares añadidos.\n
         8. Si lees algo como Grasa o Grasas o Grasa Total o Grasas totales cambialo por Grasa total. \n
-        9. Si lees algo como Energía (kcal) o Energía (Kcal) o Energía (KCal) o Calorías (Kcal) o similar cambialo por Calorías (kcal).\n
-        10. siempre lleva las unidades, ya sea g, o mg, a veces un 9 puede confundirse con la g, toma esto en cuenta para realizar la interpretación. También puede confundir letras por números, ejemplo B es un 8, una O por un 0, una i o l por un 1, etc. toma esto en cuenta\n
-        11. si al final de la lectura del valor no encuentras un g o mg, toma el ultimo digito y cambialo por una g ya que el OCR hizo la lectura erroneamente\n 
+        9. Si lees algo como Energía (kcal) o Energia.(kcal) o Energía (Kcal) o Energía (KCal) o Calorías (Kcal) o similar cambialo por Calorías.\n
+        10. Si lees algo como Acidos Grasos Pollinsaturados cambialo por Grasa poliinsaturada. \n
+        11. Si lees algo como Acidos Grasos Monoinsaturados cambialo por Grasa monoinsaturada. \n
+        12. Si lees algo como Az.totales o Azúcares Totales o Az. Totales cambialo por Azúcares totales. \n
+        13. siempre lleva las unidades, ya sea g, o mg, a veces un 9 puede confundirse con la g, toma esto en cuenta para realizar la interpretación. También puede confundir letras por números, ejemplo B es un 8, una O por un 0, una i o l por un 1, etc. toma esto en cuenta\n
+        14. si al final de la lectura del valor no encuentras un g o mg, toma el ultimo digito y cambialo por una g ya que el OCR hizo la lectura erroneamente\n 
         Tu respuesta debe ser UNICAMENTE un objeto json con claves y valores de la siguiente manera, con este ejemplo: {{"Azucares añadidos": ["100 mg", "45 mg"], "sodio": ["45 g", "12 g"]}} en la que des el nombre del nutriente como llave y como valor un array con dos cantidades, la de 100g y la de por porción, también agrega la cantidad de calorías.\n
         este es el input:\n
         {ocr_output}\n

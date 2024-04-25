@@ -17,7 +17,6 @@ class NutritionalTable(models.Model):
     ocr_data = models.JSONField(_('datos ocr'), null=True, blank=True, default=dict)    
     file_table = models.FileField(_('archivo de tabla original'), upload_to=utils.upload_user_file,
                                             null=True,
-                                            blank=True,
                                             validators=[utils.validate_file])
     file_table_processed = models.FileField(_('archivo de tabla procesada'), upload_to=utils.upload_user_file_processed,
                                             null=True,

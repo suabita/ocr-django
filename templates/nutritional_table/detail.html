@@ -27,15 +27,22 @@
                         <div class="col-md-12 col-lg-6 text-left d-flex align-items-center">
                             <p class="card-text text-left">
                                 <small class="text-body-secondary">
-                                    <a class="medium-color" href="{{ custom_function_url }}">¿ Deseas generar una nueva respuesta?</a>
+                                    <a class="medium-color" href="{{ custom_function_url }}">¿ Deseas generar una nueva respuesta?</a>,
                                 </small>
                                 <small class="text-body-secondary">
-                                    <a class="medium-color" href="{{ object.file_table.url }}">imagen original</a>
+                                    <a class="medium-color" href="{{ object.file_table.url }}">imagen original</a>.
                                 </small>
+                                {% if  object.file_table_processed %}
+                                <small class="text-body-secondary">
+                                    <a class="medium-color" href="{{ object.file_table_processed.url }}">imagen procesada</a>
+                                </small>
+                                {% endif %}
                             </p>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex justify-content-end align-items-center">
+                            {% if object.status == 0 %}
                             <a href="{% url 'nutritional_table:detail' object.id %}" class="btn custom-deep-blue-btn mb-3 align-self-center custom-rounded">Actualizar</a>
+                            {% endif %}
                         </div>
                         
                         
@@ -73,11 +80,11 @@
                 </div>
             </div>
     
-            <p class="card-text mb-4">{{info.concept}}</p>
+            <p class="card-text mb-4 text-justify">{{info.concept}}</p>
     
             <div class="collapse multi-collapse" id="multiCollapse{{ nutrient | slugify }}">
                 <h6 class="card-subtitle mb-3 bold-text medium-color-2 ">Implicaciones para la salud asociadas al exceso o la deficiencia</h6>
-                <p class="card-text">{{info.implications}}</p>
+                <p class="card-text text-justify">{{info.implications}}</p>
             </div>
     
             <a class="medium-color" data-bs-toggle="collapse" href="#multiCollapse{{ nutrient | slugify}}" aria-expanded="false" aria-controls="multiCollapse{{ nutrient | slugify }}">Leer más... <i class="fas fa-chevron-down"></i></a>
